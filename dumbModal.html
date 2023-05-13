@@ -1,16 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Are you Dumb?</title>
+    <style>
+        #counter{
+            height: 100px;
+            background-color: black;
+            color: white;
+            font-size: 100px;
+            width: 20%;
+            text-align: center;
+        }
+    </style>
 </head>
+
 <body>
 
+    <h1>Counter</h1>
+    <button onclick="startCount()">Start</button>
+    <div id="counter"></div>
+    <button onclick="stopCount()">Stop</button>
+
     <script>
-        
+
+// myGreetings=()=>{
+// console.log("hello")
+// };
+//         const timeOut = setTimeout(myGreetings, 5000);
+
+let counter = 1;
+let timeOut;
+// let timer_on = 0;
+
+function timerCount(){
+    document.getElementById("counter").innerHTML = counter;
+    counter++;
+    timeOut= setTimeout(timerCount, 1000)
+}
+// timerCount();
+function startCount(){
+    // timer_on = 1;
+    timerCount();
+}
+function stopCount(){
+    clearTimeout(timeOut);
+    counter = 0;
+    // timer_on = 0;
+}
+
+
+
     </script>
-    
+
 </body>
+
 </html>

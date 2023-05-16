@@ -32,25 +32,51 @@
 // };
 //         const timeOut = setTimeout(myGreetings, 5000);
 
-let counter = 1;
-let timeOut;
-// let timer_on = 0;
+// let counter = 1;
+// let timeOut;
+// // let timer_on = 0;
 
-function timerCount(){
-    document.getElementById("counter").innerHTML = counter;
-    counter++;
-    timeOut= setTimeout(timerCount, 1000)
+// function timerCount(){
+//     document.getElementById("counter").innerHTML = counter;
+//     counter++;
+//     timeOut= setTimeout(timerCount, 1000)
+// }
+// // timerCount();
+// function startCount(){
+//     // timer_on = 1;
+//     timerCount();
+// }
+// function stopCount(){
+//     clearTimeout(timeOut);
+//     counter = 0;
+//     // timer_on = 0;
+// }
+
+// let person = ['iman',20];
+// let person = {name:'iman',age:20};
+
+// person.forEach(function(value){
+// console.log(value);
+// });
+
+// person.forEach(function(value){
+// console.log(person[value]);
+// });
+
+const person = { fname: "John", lname: "Doe", age: 25 };
+for (let x in person) {
+  //x = object Key like fname
+  // console.log(x, "object key");
+  // console.log(person[x], "object value");
 }
-// timerCount();
-function startCount(){
-    // timer_on = 1;
-    timerCount();
-}
-function stopCount(){
-    clearTimeout(timeOut);
-    counter = 0;
-    // timer_on = 0;
-}
+const arrayOfKeys = Object.keys(person); // ["fname","lname","age"];
+
+arrayOfKeys.forEach(function (singleObjectKey) {
+  // console.log(singleObjectKey, "object key");
+  console.log(person[singleObjectKey], "object value");
+});
+
+
 
 
 

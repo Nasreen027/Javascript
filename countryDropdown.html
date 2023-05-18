@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <select name="" id="selectCountry" onchange="getCities()">
+        <option value="">Select:</option>
+        <option value="pakistan">Pakistan</option>
+        <option value="india">India</option>
+    </select>
+    <select name="" id="cities" onchange="">
+        <option value="">Select:</option>
+    </select>
+    <script>
+
+        let getCities = () => {
+            let countrySelect = document.querySelector('#selectCountry').value;
+            let cities = document.querySelector('#cities').innerHTML;
+            let pakistanCities = ['Karachi', 'Islamabad', 'Lahore'];
+            let indiaCities = ['Mumbai', 'Delhi', 'Kolkata'];
+            if (countrySelect == 'pakistan') {
+                for (let i = 0; i < pakistanCities.length; i++) {
+                    let citiesNames = document.getElementById('cities').innerHTML+=`<option value="">${pakistanCities[i]}</option>`;
+                };
+            } 
+            else if (countrySelect == 'india') {
+                for (let i = 0; i < indiaCities.length; i++) {
+
+                     citiesNames = document.getElementById('cities').innerHTML+=
+                    `<option value="">${indiaCities[i]}</option>`;
+
+                    // indiaCities[i];
+                    // console.log(citiesNames)
+                };
+            }
+        }
+
+    </script>
+</body>
+
+</html>

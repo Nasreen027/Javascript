@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Are you Dumb?</title>
+    <style>
+        #counter {
+            height: 100px;
+            background-color: black;
+            color: white;
+            font-size: 100px;
+            width: 20%;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Counter</h1>
+    <button onclick="startCount()">Start</button>
+    <div id="counter"></div>
+    <button onclick="stopCount()">Stop</button>
+
+    <script>
+
+        // myGreetings=()=>{
+        // console.log("hello")
+        // };
+        //         const timeOut = setTimeout(myGreetings, 5000);
+
+        // let counter = 1;
+        // let timeOut;
+        // // let timer_on = 0;
+
+        // function timerCount(){
+        //     document.getElementById("counter").innerHTML = counter;
+        //     counter++;
+        //     timeOut= setTimeout(timerCount, 1000)
+        // }
+        // // timerCount();
+        // function startCount(){
+        //     // timer_on = 1;
+        //     timerCount();
+        // }
+        // function stopCount(){
+        //     clearTimeout(timeOut);
+        //     counter = 0;
+        //     // timer_on = 0;
+        // }
+
+        // let person = ['iman',20];
+        // let person = {name:'iman',age:20};
+
+        // person.forEach(function(value){
+        // console.log(value);
+        // });
+
+        // person.forEach(function(value){
+        // console.log(person[value]);
+        // });
+
+        const person = { fname: "John", lname: "Doe", age: 25 };
+        for (let x in person) {
+            //x = object Key like fname
+            // console.log(x, "object key");
+            // console.log(person[x], "object value");
+        }
+        const arrayOfKeys = Object.keys(person); // ["fname","lname","age"];
+
+        arrayOfKeys.forEach(function (singleObjectKey) {
+            // console.log(singleObjectKey, "object key");
+            //   console.log(person[singleObjectKey], "object value");
+        });
+
+        const getTodayDate = new Date();
+        // const getTodayDate = new Date('12-11-2002');
+        // const getTodayDate = new Date('December 11 2002');
+        let get = getTodayDate.getDate();
+        // get = getTodayDate.getDay();
+        // get = getTodayDate.getFullYear();
+        // get = getTodayDate.getHours();
+        // get = getTodayDate.getMilliseconds();
+        // get = getTodayDate.getMinutes();
+        // get = getTodayDate.getMonth()+1;
+        // get = getTodayDate.getTime();
+        // get = getTodayDate.getUTCDate();
+
+        // console.log(get);
+        let day;
+        switch (getTodayDate.getDay()) {
+            case 0:
+                day = 'Sunday';
+                break;
+            case 1:
+                day = 'Monday';
+                break;
+            case 2:
+                day = 'Tuesday';
+                break;
+            case 3:
+                day = 'Wednesday';
+                break;
+            case 4:
+                day = 'Thursday';
+                break;
+            case 5:
+                day = 'Friday';
+                break;
+            case 6:
+                day = 'Saturday';
+                break;
+        }
+        console.log(day);
+    </script>
+
+</body>
+
+</html>

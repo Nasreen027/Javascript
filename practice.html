@@ -114,7 +114,54 @@
                 day = 'Saturday';
                 break;
         }
-        console.log(day);
+        // console.log(day);
+
+
+        //functions  
+       // immediately invokable function expressions - IIFEs
+        let add2 = (function (one = '', two = '') {
+            // console.log(`${one} ${two}`);
+        })('one', 'two');
+        let todo = {
+            add: function () {
+                // console.log('add of todo');
+            },
+            edit: function (id) {
+                // console.log(`edit of todo ${id}`)
+            }
+        };
+        todo.add();
+        todo.edit(2);
+
+        //closures
+
+        //global variable
+        let a = 4;
+        function fun(one) {
+            //local variable
+            let b = 3;
+            // console.log(a,b,one);
+        }
+        fun(5);
+
+        let counter = 0;
+        function myFun() {
+            counter += 1;
+            return counter;
+        };
+        // console.log(myFun());
+        // console.log(myFun());
+        // console.log(myFun());
+        let nestedFunction = (function () {
+            let counter = 0;
+            return function () {
+                counter += 1;
+                return counter;
+            }
+        })();
+        // nestedFunction();
+        // console.log(nestedFunction());
+        // console.log(nestedFunction());
     </script>
 
 </body>

@@ -153,7 +153,6 @@
         // console.log(myFun());
         // console.log(myFun());
         let nestedFunction = (function () {
-            let counter = 0;
             return function () {
                 counter += 1;
                 return counter;
@@ -161,7 +160,64 @@
         })();
         // nestedFunction();
         // console.log(nestedFunction());
+        counter = 1000;
         // console.log(nestedFunction());
+        // console.log(nestedFunction(),"nestedFunction");
+        // console.log(myFun(), "myFun");
+        // console.log(nestedFunction(),"nestedFunction");
+        // console.log(myFun(), "myFun");
+        // window.alert('working');
+        // alert('working');
+        // console.log(window,'window');
+        // const input = prompt();
+        // console.log(input,'input');
+        // const check = confirm();
+        // const check = confirm('are you sure?')
+        // console.log(check,'check');
+        // if(check){
+            // console.log('ok');
+        // }
+        // else{
+            // console.log('cancel');
+        // }
+        // console.log(check,'check');
+        let browserHeight = window.outerHeight;
+        browserHeight = window.outerWidth;
+        browserHeight = window.innerHeight;
+        browserHeight = window.innerWidth;
+        browserHeight = window.scrollY;
+        browserHeight = window.scrollX;
+        browserHeight = window.location;
+        browserHeight = window.location.hostname;
+        browserHeight = window.location.port;
+        browserHeight = window.location.href;
+        browserHeight = window.location.search;
+        // console.log(browserHeight);
+
+        if(window.navigator.geolocation){
+            navigator.geolocation.getCurrentPosition(function(position){
+                // console.log(position,'position');
+            });
+        }
+        else{
+            // console.log('geolocation is not supported by this browser');
+        // alert('geolocation is not supported by this browser');
+        }
+        setTimeout(function(){
+            console.log('timeout');
+        },3000);
+        
+        window.history.go(-2);
+        browserHeight = window.navigator;
+        browserHeight = window.navigator.appName;
+        browserHeight = window.navigator.appVersion;
+        browserHeight = window.navigator.userAgent;
+        browserHeight = window.navigator.platform;
+        browserHeight = window.navigator.vendor;
+        browserHeight = window.navigator.language;
+        console.log(browserHeight);
+
+        
     </script>
 
 </body>

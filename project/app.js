@@ -1,6 +1,8 @@
 const taskInput = document.querySelector("#task");
 const taskForm = document.querySelector("#task-form");
 const collection = document.querySelector('.collection');
+const clearTaskBtn = document.querySelector('.clear-tasks');
+const filterInput = document.querySelector('#filter');
 
 // taskForm.addEventListener("submit", onTaskSubmit);
 taskForm.addEventListener("submit", function (event) {
@@ -37,11 +39,42 @@ function bindDeleteTaskIcon() {
   });
   // console.log(selectAllDeleteIcons,'selectAllDeleteIcons');
 };
-function removeTaskHandler(event){
+function removeTaskHandler(event) {
+  event.preventDefault();
+  const currentElement = event.target;
+  // console.log(currentElement,'currentElement');
+  if (confirm('Are you sure?')) {
+    currentElement.parentElement.parentElement.remove();
+  }
+};
+
+clearTaskBtn.addEventListener('click', clearTaskHandler);
+
+function clearTaskHandler(event) {
+  event.preventDefault();
+  if (confirm("Are you sure?")) {
+    collection.innerHTML = "";
+  }
+};
+
+filterInput.addEventListener('input', filterTaskHandler);
+
+function filterTaskHandler(event){
 event.preventDefault();
 const currentElement = event.target;
 // console.log(currentElement,'currentElement');
-if(confirm('Are you sure?')){
-  currentElement.parentElement.parentElement.remove();
-}
+const searchValue = currentElement.value.toLowerCase();
+console.log(searchValue,'searchValue');
+// const selectAllItems = document.querySelector('.collection-item');
+// selectAllItems.forEach(function(singleItem){
+//   const itemText = singleItem.value.toLowerCase();
+//   if(itemText.indexOf(searchValue)== -1){
+//     singleItem.style.display = 'none';
+//   }
+//   else{
+//     singleItem.style.display = 'block';
+//   };
+// });
 };
+
+

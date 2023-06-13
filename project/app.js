@@ -2,7 +2,8 @@ const taskInput = document.querySelector("#task");
 const taskForm = document.querySelector("#task-form");
 const collection = document.querySelector('.collection');
 const clearTaskBtn = document.querySelector('.clear-tasks');
-const filterInput = document.querySelector('#filter');
+const filterInput = document.querySelector("#filter");
+// console.log(filterInput,'filterInput');
 
 // taskForm.addEventListener("submit", onTaskSubmit);
 taskForm.addEventListener("submit", function (event) {
@@ -59,22 +60,24 @@ function clearTaskHandler(event) {
 
 filterInput.addEventListener('input', filterTaskHandler);
 
-function filterTaskHandler(event){
-event.preventDefault();
-const currentElement = event.target;
-// console.log(currentElement,'currentElement');
-const searchValue = currentElement.value.toLowerCase();
-console.log(searchValue,'searchValue');
-// const selectAllItems = document.querySelector('.collection-item');
-// selectAllItems.forEach(function(singleItem){
-//   const itemText = singleItem.value.toLowerCase();
-//   if(itemText.indexOf(searchValue)== -1){
-//     singleItem.style.display = 'none';
-//   }
-//   else{
-//     singleItem.style.display = 'block';
-//   };
-// });
+function filterTaskHandler(event) {
+  event.preventDefault();
+  const currentElement = event.target;
+  // console.log(currentElement,'currentElement');
+  const searchValue = currentElement.value.toLowerCase();
+  // console.log(searchValue,'searchValue');
+  const selectAllItems = document.querySelectorAll('.collection-item');
+  // console.log(selectAllItems,'selectAllItems');
+  selectAllItems.forEach(function (singleItem) {
+    const itemText = singleItem.innerText.toLowerCase();
+    // console.log(itemText,'itemText');
+    if (itemText.indexOf(searchValue) == -1) {
+      singleItem.style.display = 'none';
+    }
+    else {
+      singleItem.style.display = 'block';
+    };
+  });
 };
 
 

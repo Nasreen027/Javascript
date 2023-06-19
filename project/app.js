@@ -16,6 +16,11 @@ taskForm.addEventListener("submit", function (event) {
     return;
   }
 
+  appendTasksWithDeleteIcon(taskInputValue);
+  saveTaskIntoLocalStorage(taskInputValue);
+  taskInput.value = '';
+});
+function appendTasksWithDeleteIcon(taskInputValue){
   const listElement = document.createElement("li");
   // console.log(listElement, 'listElement');
   listElement.className = 'collection-item';
@@ -26,9 +31,8 @@ taskForm.addEventListener("submit", function (event) {
     </a>
     `;
   collection.append(listElement);
-  taskInput.value = '';
   bindDeleteTaskIcon();
-});
+}
 
 // console.log(taskForm,'taskform');
 
@@ -80,4 +84,32 @@ function filterTaskHandler(event) {
   });
 };
 
+function getOldTaskFromLocalStorage(){
+  const getTaskFromLocalStorage = localStorage.getItem("tasks");
+  if(getTaskFromLocalStorage){
+    return JSON.parse(getTaskFromLocalStorage);
+  }
+  else{
+    return [];
+  }
+}
+function saveTaskIntoLocalStorage(taskInputValue){
+  // console.log(taskInputValue,'taskInputValue');
+  const oldTasks = getOldTaskFromLocalStorage();
+  // console.log(oldTasks,'oldTask');
+  oldTasks.push(taskInputValue);
+  // console.log(taskInputValue,'taskInputValue');
+  // console.log(oldTasks,'oldTasks');
+  localStorage.setItem("tasks",JSON.stringify(oldTasks));
+}
+
+document.addEventListener("DOMContentLoaded", getTasksFromLocalStorageAndAppend);
+
+function getTasksFromLocalStorageAndAppend(){
+  const oldTask = getOldTaskFromLocalStorage();
+  oldTask.forEach(function(singleTask){
+    // console.log(singleTask,'singleTask');
+    appendTasksWithDeleteIcon(singleTask);
+  })
+}
 

@@ -20,7 +20,7 @@ taskForm.addEventListener("submit", function (event) {
   saveTaskIntoLocalStorage(taskInputValue);
   taskInput.value = '';
 });
-function appendTasksWithDeleteIcon(taskInputValue){
+function appendTasksWithDeleteIcon(taskInputValue) {
   const listElement = document.createElement("li");
   // console.log(listElement, 'listElement');
   listElement.className = 'collection-item';
@@ -49,7 +49,9 @@ function removeTaskHandler(event) {
   const currentElement = event.target;
   // console.log(currentElement,'currentElement');
   if (confirm('Are you sure?')) {
-    currentElement.parentElement.parentElement.remove();
+    const selectLiElement = currentElement.parentElement.parentElement;
+    removeTaskFromLocalStorage(selectLiElement.innerText);
+    selectLiElement.remove();
   }
 };
 
@@ -59,6 +61,7 @@ function clearTaskHandler(event) {
   event.preventDefault();
   if (confirm("Are you sure?")) {
     collection.innerHTML = "";
+    localStorage.removeItem("tasks");
   }
 };
 
@@ -77,6 +80,7 @@ function filterTaskHandler(event) {
     // console.log(itemText,'itemText');
     if (itemText.indexOf(searchValue) == -1) {
       singleItem.style.display = 'none';
+      // singleItem.innerText = 'No results found';
     }
     else {
       singleItem.style.display = 'block';
@@ -84,32 +88,49 @@ function filterTaskHandler(event) {
   });
 };
 
-function getOldTaskFromLocalStorage(){
+function getOldTaskFromLocalStorage() {
   const getTaskFromLocalStorage = localStorage.getItem("tasks");
-  if(getTaskFromLocalStorage){
+  if (getTaskFromLocalStorage) {
     return JSON.parse(getTaskFromLocalStorage);
   }
-  else{
+  else {
     return [];
   }
 }
-function saveTaskIntoLocalStorage(taskInputValue){
+function saveTaskIntoLocalStorage(taskInputValue) {
   // console.log(taskInputValue,'taskInputValue');
   const oldTasks = getOldTaskFromLocalStorage();
   // console.log(oldTasks,'oldTask');
   oldTasks.push(taskInputValue);
   // console.log(taskInputValue,'taskInputValue');
   // console.log(oldTasks,'oldTasks');
-  localStorage.setItem("tasks",JSON.stringify(oldTasks));
+  localStorage.setItem("tasks", JSON.stringify(oldTasks));
 }
 
 document.addEventListener("DOMContentLoaded", getTasksFromLocalStorageAndAppend);
 
-function getTasksFromLocalStorageAndAppend(){
+function getTasksFromLocalStorageAndAppend() {
   const oldTask = getOldTaskFromLocalStorage();
-  oldTask.forEach(function(singleTask){
+  oldTask.forEach(function (singleTask) {
     // console.log(singleTask,'singleTask');
     appendTasksWithDeleteIcon(singleTask);
-  })
+  });
 }
+
+function removeTaskFromLocalStorage(taskValue) {
+  // console.log(taskValue,'taskValue');
+  const oldTask = getOldTaskFromLocalStorage();
+  oldTask.forEach(function (singleTaskFromLocalStorage, index) {
+    // console.log(singleTaskFromLocalStorage,'singleTaskFromLocalStorage');
+    // console.log(index,'index');
+    if (singleTaskFromLocalStorage === taskValue) {
+      // console.log(taskValue,'taskValue');
+      // const splice = oldTask.splice(index, 1);
+      oldTask.splice(index, 1);
+      console.log(oldTask, 'oldTask');
+      // console.log(splice,'splice');
+    }
+  });
+  localStorage.setItem("tasks", JSON.stringify(oldTask));
+};
 

@@ -3,9 +3,9 @@ const input = document.querySelector(".screen");
 const clearBtn = document.querySelector(".btn-clear");
 const equalBtn = document.querySelector(".btn-equal");
 
-selectAllBtn.forEach(function(singleBtn){
+selectAllBtn.forEach(function (singleBtn) {
     // console.log(singleBtn,'singleBtn');
-    singleBtn.addEventListener("click",function(event){
+    singleBtn.addEventListener("click", function (event) {
         event.preventDefault();
         // console.log(event,'event');
         const currentBtn = event.target;
@@ -17,12 +17,27 @@ selectAllBtn.forEach(function(singleBtn){
     });
 });
 
-equalBtn.addEventListener("click",function(event){
+equalBtn.addEventListener("click", function (event) {
     event.preventDefault();
     input.value = eval(input.value);
 });
 
-clearBtn.addEventListener("click",function(event){
+clearBtn.addEventListener("click", function (event) {
     event.preventDefault();
     input.value = "";
+});
+
+input.addEventListener("input", function (event) {
+    event.preventDefault();
+    // console.log(event, 'event');
+    const currentElement = event.target;
+    if(onlyLetters(currentElement)){
+        currentElement.value = "";
+        // console.log(currentElement,'currentElement')
+    }
+    // console.log(currentElement,'currentElement');
 })
+
+function onlyLetters(str) {
+    return /[a-zA-Z]+$/.test(str);
+};

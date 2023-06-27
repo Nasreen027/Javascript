@@ -33,11 +33,11 @@ budgetForm.addEventListener("submit", function (event) {
     function checkExpenseAmout(expenseInputValue, budgetInputValue) {
         console.log(budgetInputValue, 'budgetInputValue');
         console.log(expenseInputValue, 'expenseInputValue');
-        const expenseAndBudget = parseFloat(expenseInputValue <= budgetInputValue);
+        // const expenseAndBudget = parseFloat(expenseInputValue = budgetInputValue);
 
-        if (expenseAndBudget) {
-            console.log(expenseAndBudget , 'expenseAndBudget');
-        }
+        // if (expenseAndBudget) {
+        //     console.log(expenseAndBudget , 'expenseAndBudget');
+        // }
     }
 
     // function appendBudget(budgetInputValue) {

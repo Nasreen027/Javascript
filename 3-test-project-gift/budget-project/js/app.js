@@ -3,7 +3,10 @@ const budgetInput = document.querySelector("#budget-input");
 const expenseForm = document.querySelector("#expense-form");
 // console.log(expenseForm,'expenseForm');
 const expenseInput = document.querySelector("#amount-input");
-
+const expenseList = document.querySelector(".expense-list");
+const budgetAmount = document.querySelector("#budget-amount");
+const expenseAmount = document.querySelector("#expense-amount");
+const getAllExpenses = document.querySelectorAll(".expense-amount");
 
 budgetForm.addEventListener("submit", function (event) {
     event.preventDefault();
@@ -14,6 +17,7 @@ budgetForm.addEventListener("submit", function (event) {
         return;
     }
     else {
+        budgetAmount.innerHTML = budgetInputValue; 
         expenseForm.addEventListener("submit", function (event) {
             event.preventDefault();
             const expenseInputValue = expenseInput.value;
@@ -30,20 +34,59 @@ budgetForm.addEventListener("submit", function (event) {
 
         })
     }
+});
     function checkExpenseAmout(expenseInputValue, budgetInputValue) {
-        console.log(budgetInputValue, 'budgetInputValue');
-        console.log(expenseInputValue, 'expenseInputValue');
-        // const expenseAndBudget = parseFloat(expenseInputValue = budgetInputValue);
+        // console.log(budgetInputValue, 'budgetInputValue');
+        // console.log(expenseInputValue, 'expenseInputValue');
+        const expense = parseFloat(expenseInputValue);
+        const budget = parseFloat(budgetInputValue)
 
-        // if (expenseAndBudget) {
-        //     console.log(expenseAndBudget , 'expenseAndBudget');
-        // }
-    }
+        if (expense <= budget) {
+            // console.log(eval(budget-expense) , 'expenseAndBudget');
+            appendBudget(budgetInputValue, expenseInputValue);
+        }
+        else {
+            alert("budget is low");
+            return;
+        }
+    };
 
-    // function appendBudget(budgetInputValue) {
-    //     console.log(budgetInputValue, 'budgetInputValue');
+    function appendBudget(budgetInputValue, expenseInputValue) {
+        // console.log(budgetInputValue, 'budgetInputValue');
+        const expenseElement = document.createElement("div");
+        expenseElement.classList = `expense-item d-flex justify-content-between align-items-baseline`;
+        expenseElement.innerHTML = `<h6 class="expense-title mb-0 text-uppercase list-item">- Hair Cutting</h6>
+        <h5 class="expense-amount mb-0 list-item">${expenseInputValue}</h5>
+        <div class="expense-icons list-item">
+         <a href="#" class="delete-icon" data-id="${expense.id}">
+          <i class="fas fa-trash"></i>
+         </a>
+        </div>`;
+        // console.log(expenseElement,'expenseElement');
+        expenseList.append(expenseElement);
+        bindDeleteTaskIcon();
+        makeArrayOfExpenseAmount(expenseInputValue);
+        console.log(expenseInputValue,'expenseInputValue');
+    };
 
+    function bindDeleteTaskIcon() {
+        const selectAllDeleteIcons = document.querySelectorAll(".delete-icon");
+        // console.log(selectAllDeleteIcons,'selectAllDeleteIcons');
+        selectAllDeleteIcons.forEach(function(singleDeleteIcon){
+            singleDeleteIcon.addEventListener("click",removeTaskHandler);
+            // console.log(singleDeleteIcon,'singleDeleteIcon');
+        });
+    };
 
-    // };
-
-})
+    function removeTaskHandler(event){
+        event.preventDefault();
+       const currentDeleteIcon = event.target;
+        // console.log(currentDeleteIcon,'currentDeleteIcon');
+        if(confirm("Are you sure?")){
+            const selectDeleteIcon = currentDeleteIcon.parentElement.parentElement.parentElement;
+            selectDeleteIcon.remove();
+        };
+    };
+    function makeArrayOfExpenseAmount(){
+        
+    };

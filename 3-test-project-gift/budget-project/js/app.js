@@ -1,12 +1,16 @@
 const budgetForm = document.querySelector("#budget-form");
 const budgetInput = document.querySelector("#budget-input");
+const expenseInput = document.querySelector("#expense-input");
+// console.log(expenseInput,'expenseInput');
+// const expenseTitle = document.querySelector(".expense-title");
+// console.log(expenseTitle,'expenseTitle');
 const expenseForm = document.querySelector("#expense-form");
 // console.log(expenseForm,'expenseForm');
-const expenseInput = document.querySelector("#amount-input");
+const amountInput = document.querySelector("#amount-input");
 const expenseList = document.querySelector(".expense-list");
 const budgetAmount = document.querySelector("#budget-amount");
 const expenseAmount = document.querySelector("#expense-amount");
-const getAllExpenses = document.querySelectorAll(".expense-amount");
+// const getAllExpenses = document.querySelectorAll(".expense-amount");
 
 budgetForm.addEventListener("submit", function (event) {
     event.preventDefault();
@@ -20,14 +24,16 @@ budgetForm.addEventListener("submit", function (event) {
         budgetAmount.innerHTML = budgetInputValue; 
         expenseForm.addEventListener("submit", function (event) {
             event.preventDefault();
+            const amountInputValue = amountInput.value;
             const expenseInputValue = expenseInput.value;
             // console.log(expenseInputValue,'expenseInputValue');
-            if (!expenseInputValue) {
+            // console.log(expenseInputValue,'expenseInputValue');
+            if (!amountInputValue) {
                 alert("no additional expense found");
                 return;
             }
             else {
-                checkExpenseAmout(expenseInputValue, budgetInputValue);
+                checkExpenseAmout(amountInputValue, budgetInputValue,expenseInputValue);
             }
             // appendBudget(budgetInputValue);
 
@@ -35,15 +41,15 @@ budgetForm.addEventListener("submit", function (event) {
         })
     }
 });
-    function checkExpenseAmout(expenseInputValue, budgetInputValue) {
+    function checkExpenseAmout(amountInputValue, budgetInputValue, expenseInputValue) {
         // console.log(budgetInputValue, 'budgetInputValue');
         // console.log(expenseInputValue, 'expenseInputValue');
-        const expense = parseFloat(expenseInputValue);
+        const expense = parseFloat(amountInputValue);
         const budget = parseFloat(budgetInputValue)
 
         if (expense <= budget) {
             // console.log(eval(budget-expense) , 'expenseAndBudget');
-            appendBudget(budgetInputValue, expenseInputValue);
+            appendBudget(, amountInputValue, expenseInputValue);
         }
         else {
             alert("budget is low");
@@ -51,12 +57,14 @@ budgetForm.addEventListener("submit", function (event) {
         }
     };
 
-    function appendBudget(budgetInputValue, expenseInputValue) {
+    function appendBudget(amountInputValue,expenseInputValue) {
+        // console.log(expenseInputValue,'expenseInputValue');
         // console.log(budgetInputValue, 'budgetInputValue');
+        console.log(amountInputValue,'amountInputValue');
         const expenseElement = document.createElement("div");
         expenseElement.classList = `expense-item d-flex justify-content-between align-items-baseline`;
-        expenseElement.innerHTML = `<h6 class="expense-title mb-0 text-uppercase list-item">- Hair Cutting</h6>
-        <h5 class="expense-amount mb-0 list-item">${expenseInputValue}</h5>
+        expenseElement.innerHTML = `<h6 class="expense-title mb-0 text-uppercase list-item">${expenseInputValue}</h6>
+        <h5 class="expense-amount mb-0 list-item">${amountInputValue}</h5>
         <div class="expense-icons list-item">
          <a href="#" class="delete-icon" data-id="${expense.id}">
           <i class="fas fa-trash"></i>
@@ -65,8 +73,8 @@ budgetForm.addEventListener("submit", function (event) {
         // console.log(expenseElement,'expenseElement');
         expenseList.append(expenseElement);
         bindDeleteTaskIcon();
-        makeArrayOfExpenseAmount(expenseInputValue);
-        console.log(expenseInputValue,'expenseInputValue');
+        makeArrayOfExpenseAmount(amountInputValue);
+        // console.log(expenseInputValue,'expenseInputValue');
     };
 
     function bindDeleteTaskIcon() {
@@ -87,6 +95,7 @@ budgetForm.addEventListener("submit", function (event) {
             selectDeleteIcon.remove();
         };
     };
+
     function makeArrayOfExpenseAmount(){
-        
+        // const makeArrayOfAllExpenses;
     };

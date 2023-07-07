@@ -40,6 +40,8 @@ budgetForm.addEventListener("submit", function (event) {
 
         });
     };
+    // saveTaskIntoLocalStorage(amountInputValue);
+
 });
 function checkExpenseAmout(amountInputValue, budgetInputValue, expenseInputValue) {
     // console.log(budgetInputValue, 'budgetInputValue');
@@ -72,8 +74,15 @@ function appendBudget(amountInputValue, expenseInputValue) {
         </div>`;
     // console.log(expenseElement,'expenseElement');
     expenseList.append(expenseElement);
+    let a = 0;
+    let b = amountInputValue;
+    // console.log(b,'b');
+    let c = a+b;
+    a = b;
+    console.log(a,'a');
+
     bindDeleteTaskIcon();
-    addAllExpenses(amountInputValue);
+    // addAllExpenses(amountInputValue);
     // makeArrayOfExpenses(amountInputValue);
     // pushExpenses(amountInputValue);
     // console.log(expenseInputValue,'expenseInputValue');
@@ -97,11 +106,36 @@ function removeTaskHandler(event) {
         selectDeleteIcon.remove();
     };
 };
-function addAllExpenses(amountInputValue) {
-    const amountInputValue = amountInputValue;
-    const getExpenseValues = amountInputValue;
-    console.log(getExpenseValues, 'getExpenseValues');
-}
+// function addAllExpenses(amountInputValue) {
+//     // const getAmountInputValue = amountInputValue;
+//     const getExpenseValues = amountInputValue;
+//     // console.log(getExpenseValues, 'getExpenseValues');
+//     let arrayOfExpenses = getExpenseValues;
+//     arrayOfExpenses.push()
+//     let parseExpense = JSON.parse(arrayOfExpenses);
+//     parseExpense.push(getExpenseValues);
+//     console.log(JSON.stringify(parseExpense),'parseExpense');
+// }
+// function addAllExpenses(amountInputValue) {
+//     const getTaskFromLocalStorage = amountInputValue;
+//     // console.log(getTaskFromLocalStorage)
+//     if (getTaskFromLocalStorage) {
+//       return JSON.parse(getTaskFromLocalStorage);
+//     }
+//     else {
+//       return [];
+//     }
+//   }
+//   function saveTaskIntoLocalStorage(amountInputValue) {
+//     // console.log(taskInputValue,'taskInputValue');
+//     const oldTasks = addAllExpenses();
+//     // console.log(oldTasks,'oldTask');
+//     oldTasks.push(amountInputValue);
+//     // console.log(taskInputValue,'taskInputValue');
+//     // console.log(oldTasks,'oldTasks');
+//     console.log(JSON.stringify(oldTasks));
+//   }
+  
 
     // function makeArrayOfExpenses(amountInputValue){ 
     //     // console.log(amountInputValue,'amountInputValue');
@@ -124,3 +158,4 @@ function addAllExpenses(amountInputValue) {
     //     // const stringifyAnArray = JSON.stringify(oldExpenses);
     //     // console.log(stringifyAnArray,'stringifyAnArray');
     // };
+   

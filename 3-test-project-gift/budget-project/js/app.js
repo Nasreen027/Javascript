@@ -10,6 +10,10 @@ const amountInput = document.querySelector("#amount-input");
 const expenseList = document.querySelector(".expense-list");
 const budgetAmount = document.querySelector("#budget-amount");
 const expenseAmount = document.querySelector("#expense-amount");
+let expenseAmountPrint = document.querySelector("#expense-amount");
+const budgetInputValue = budgetInput.value;
+const balanceAmount = document.querySelector("#balance-amount");
+
 // const getAllExpenses = document.querySelectorAll(".expense-amount");
 
 budgetForm.addEventListener("submit", function (event) {
@@ -74,12 +78,7 @@ function appendBudget(amountInputValue, expenseInputValue) {
         </div>`;
     // console.log(expenseElement,'expenseElement');
     expenseList.append(expenseElement);
-    let a = 0;
-    let b = amountInputValue;
-    // console.log(b,'b');
-    let c = a+b;
-    a = b;
-    console.log(a,'a');
+    calculateExpenses();
 
     bindDeleteTaskIcon();
     // addAllExpenses(amountInputValue);
@@ -87,7 +86,35 @@ function appendBudget(amountInputValue, expenseInputValue) {
     // pushExpenses(amountInputValue);
     // console.log(expenseInputValue,'expenseInputValue');
 };
-
+function calculateExpenses(){
+    let expenseAmount = document.querySelectorAll(".expense-amount");
+    let total = 0;
+    expenseAmount.forEach(function(singleAmount){
+        total += parseFloat(singleAmount.innerText);
+        // console.log(total);
+    });
+    if(total > budgetInputValue){
+        console.log(budgetInputValue,'budgetInputValue');
+        alert("Your don't have that much budget");
+        return;
+    }
+    else{
+        expenseAmountPrint.innerHTML = total;
+        calculateBalance(expenseAmountPrint);
+    }
+    // console.log(budgetAmount,'budgetAmount');
+    // console.log(expenseAmount.innerText)
+};
+function calculateBalance(expenseAmountPrint){
+    const budgetAmountValue = budgetAmount.innerText;
+    const expenseAmountPrintValue = expenseAmountPrint.innerText;
+    // console.log(budgetAmountValue,'budgetAmountValue');
+    // console.log(budgetAmount,'budgetAmount');
+    // console.log(expenseAmountPrintValue,'expenseAmountPrintValue');
+    const balanceLeft = eval(Math.abs(expenseAmountPrintValue-budgetAmountValue));
+    // console.log(Math.abs(balanceLeft),'balanceLeft');
+    balanceAmount.innerHTML = balanceLeft;
+};
 function bindDeleteTaskIcon() {
     const selectAllDeleteIcons = document.querySelectorAll(".delete-icon");
     // console.log(selectAllDeleteIcons,'selectAllDeleteIcons');
